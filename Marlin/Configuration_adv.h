@@ -152,7 +152,7 @@
   #define THERMAL_PROTECTION_PERIOD 40        // Seconds
   #define THERMAL_PROTECTION_HYSTERESIS 4     // Degrees Celsius
 
-  //#define ADAPTIVE_FAN_SLOWING              // Slow part cooling fan if temperature drops
+  #define ADAPTIVE_FAN_SLOWING              // Slow part cooling fan if temperature drops
   #if BOTH(ADAPTIVE_FAN_SLOWING, PIDTEMP)
     //#define NO_FAN_SLOWING_IN_PID_TUNING    // Don't slow fan speed during M303
   #endif
@@ -420,7 +420,7 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN -1
+#define E0_AUTO_FAN_PIN 7
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
@@ -1007,7 +1007,7 @@
 //#define LCD_SHOW_E_TOTAL
 
 #if ENABLED(SHOW_BOOTSCREEN)
-  #define BOOTSCREEN_TIMEOUT 4000        // (ms) Total Duration to display the boot screen(s)
+  #define BOOTSCREEN_TIMEOUT 2000        // (ms) Total Duration to display the boot screen(s)
 #endif
 
 #if HAS_GRAPHICAL_LCD && EITHER(SDSUPPORT, LCD_SET_PROGRESS_MANUALLY)
@@ -1060,7 +1060,7 @@
    * If the machine reboots when resuming a print you may need to replace or
    * reformat the SD card. (Bad sectors delay startup triggering the watchdog.)
    */
-  //#define POWER_LOSS_RECOVERY
+  #define POWER_LOSS_RECOVERY
   #if ENABLED(POWER_LOSS_RECOVERY)
     #define PLR_ENABLED_DEFAULT   false // Power Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
     //#define BACKUP_POWER_SUPPLY       // Backup power / UPS to move the steppers on power loss
@@ -1118,7 +1118,7 @@
   //#define LONG_FILENAME_HOST_SUPPORT
 
   // Enable this option to scroll long filenames in the SD card menu
-  //#define SCROLL_LONG_FILENAMES
+  #define SCROLL_LONG_FILENAMES
 
   // Leave the heaters on after Stop Print (not recommended!)
   //#define SD_ABORT_NO_COOLDOWN
@@ -1464,7 +1464,7 @@
  *
  * Warning: Does not respect endstops!
  */
-//#define BABYSTEPPING
+#define BABYSTEPPING
 #if ENABLED(BABYSTEPPING)
   //#define INTEGRATED_BABYSTEPPING         // EXPERIMENTAL integration of babystepping into the Stepper ISR
   //#define BABYSTEP_WITHOUT_HOMING
@@ -1864,14 +1864,14 @@
  * Requires NOZZLE_PARK_FEATURE.
  * This feature is required for the default FILAMENT_RUNOUT_SCRIPT.
  */
-//#define ADVANCED_PAUSE_FEATURE
+#define ADVANCED_PAUSE_FEATURE
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
   #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.
                                                   // This short retract is done immediately, before parking the nozzle.
-  #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     10  // (mm/s) Unload filament feedrate. This can be pretty fast.
+  #define FILAMENT_CHANGE_UNLOAD_FEEDRATE     50  // (mm/s) Unload filament feedrate. This can be pretty fast.
   #define FILAMENT_CHANGE_UNLOAD_ACCEL        25  // (mm/s^2) Lower acceleration may allow a faster feedrate.
-  #define FILAMENT_CHANGE_UNLOAD_LENGTH      100  // (mm) The length of filament for a complete unload.
+  #define FILAMENT_CHANGE_UNLOAD_LENGTH        0  // (mm) The length of filament for a complete unload.
                                                   //   For Bowden, the full length of the tube and nozzle.
                                                   //   For direct drive, the full length of the nozzle.
                                                   //   Set to 0 for manual unloading.
@@ -1920,97 +1920,97 @@
 #if HAS_DRIVER(TMC26X)
 
   #if AXIS_DRIVER_TYPE_X(TMC26X)
-    #define X_MAX_CURRENT     1000  // (mA)
+    #define X_MAX_CURRENT     1500  // (mA)
     #define X_SENSE_RESISTOR    91  // (mOhms)
     #define X_MICROSTEPS        16  // Number of microsteps
   #endif
 
   #if AXIS_DRIVER_TYPE_X2(TMC26X)
-    #define X2_MAX_CURRENT    1000
+    #define X2_MAX_CURRENT    1500
     #define X2_SENSE_RESISTOR   91
     #define X2_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_Y(TMC26X)
-    #define Y_MAX_CURRENT     1000
+    #define Y_MAX_CURRENT     1500
     #define Y_SENSE_RESISTOR    91
     #define Y_MICROSTEPS        16
   #endif
 
   #if AXIS_DRIVER_TYPE_Y2(TMC26X)
-    #define Y2_MAX_CURRENT    1000
+    #define Y2_MAX_CURRENT    1500
     #define Y2_SENSE_RESISTOR   91
     #define Y2_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_Z(TMC26X)
-    #define Z_MAX_CURRENT     1000
+    #define Z_MAX_CURRENT     1500
     #define Z_SENSE_RESISTOR    91
     #define Z_MICROSTEPS        16
   #endif
 
   #if AXIS_DRIVER_TYPE_Z2(TMC26X)
-    #define Z2_MAX_CURRENT    1000
+    #define Z2_MAX_CURRENT    1500
     #define Z2_SENSE_RESISTOR   91
     #define Z2_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_Z3(TMC26X)
-    #define Z3_MAX_CURRENT    1000
+    #define Z3_MAX_CURRENT    1500
     #define Z3_SENSE_RESISTOR   91
     #define Z3_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_Z4(TMC26X)
-    #define Z4_MAX_CURRENT    1000
+    #define Z4_MAX_CURRENT    1500
     #define Z4_SENSE_RESISTOR   91
     #define Z4_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_E0(TMC26X)
-    #define E0_MAX_CURRENT    1000
+    #define E0_MAX_CURRENT    1500
     #define E0_SENSE_RESISTOR   91
     #define E0_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_E1(TMC26X)
-    #define E1_MAX_CURRENT    1000
+    #define E1_MAX_CURRENT    1500
     #define E1_SENSE_RESISTOR   91
     #define E1_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_E2(TMC26X)
-    #define E2_MAX_CURRENT    1000
+    #define E2_MAX_CURRENT    1500
     #define E2_SENSE_RESISTOR   91
     #define E2_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_E3(TMC26X)
-    #define E3_MAX_CURRENT    1000
+    #define E3_MAX_CURRENT    1500
     #define E3_SENSE_RESISTOR   91
     #define E3_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_E4(TMC26X)
-    #define E4_MAX_CURRENT    1000
+    #define E4_MAX_CURRENT    1500
     #define E4_SENSE_RESISTOR   91
     #define E4_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_E5(TMC26X)
-    #define E5_MAX_CURRENT    1000
+    #define E5_MAX_CURRENT    1500
     #define E5_SENSE_RESISTOR   91
     #define E5_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_E6(TMC26X)
-    #define E6_MAX_CURRENT    1000
+    #define E6_MAX_CURRENT    1500
     #define E6_SENSE_RESISTOR   91
     #define E6_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_E7(TMC26X)
-    #define E7_MAX_CURRENT    1000
+    #define E7_MAX_CURRENT    1500
     #define E7_SENSE_RESISTOR   91
     #define E7_MICROSTEPS       16
   #endif
@@ -2848,20 +2848,35 @@
   #define USER_SCRIPT_AUDIBLE_FEEDBACK
   //#define USER_SCRIPT_RETURN  // Return to status screen after a script
 
-  #define USER_DESC_1 "Home & UBL Info"
-  #define USER_GCODE_1 "G28\nG29 W"
+  // #define USER_DESC_1 "Home & UBL Info"
+  // #define USER_GCODE_1 "G28\nG29 W"
 
-  #define USER_DESC_2 "Preheat for " PREHEAT_1_LABEL
-  #define USER_GCODE_2 "M140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
+  // #define USER_DESC_2 "Preheat for " PREHEAT_1_LABEL
+  // #define USER_GCODE_2 "M140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
 
-  #define USER_DESC_3 "Preheat for " PREHEAT_2_LABEL
-  #define USER_GCODE_3 "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
+  // #define USER_DESC_3 "Preheat for " PREHEAT_2_LABEL
+  // #define USER_GCODE_3 "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
 
-  #define USER_DESC_4 "Heat Bed/Home/Level"
-  #define USER_GCODE_4 "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29"
+  // #define USER_DESC_4 "Heat Bed/Home/Level"
+  // #define USER_GCODE_4 "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29"
 
-  #define USER_DESC_5 "Home & Info"
-  #define USER_GCODE_5 "G28\nM503"
+  // #define USER_DESC_5 "Home & Info"
+  // #define USER_GCODE_5 "G28\nM503"
+
+  #define USER_DESC_1 "Origine"
+  #define USER_GCODE_1 "G28"
+
+  #define USER_DESC_2 "Avant gauche"
+  #define USER_GCODE_2 "G1 Z10 F5000\nG1 X20 Y20\nG1 Z0"
+
+  #define USER_DESC_3 "Avant droit"
+  #define USER_GCODE_3 "G1 Z10 F5000\nG1 X280 Y20\nG1 Z0"
+
+  #define USER_DESC_4 "Arrière droit"
+  #define USER_GCODE_4 "G1 Z10 F5000\nG1 X280 Y280\nG1 Z0"
+
+  #define USER_DESC_5 "Arrière gauche"
+  #define USER_GCODE_5 "G1 Z10 F5000\nG1 X20 Y280\nG1 Z0"
 #endif
 
 /**
